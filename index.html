@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>freshmart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'
+    integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="asset/css/style.css">
+</head>
+
+<body>
+  <header>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">location</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <button class="btn btn-outline-secondary" id="currentLocationBtn" type="button">current location</button>
+              <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                <option selected>Choose...</option>
+                <option value="1">morena</option>
+                <option value="2">bhind</option>
+                <option value="3">gwalior</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title m-auto" id="offcanvasRightLabel">My Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body ">
+        
+        
+  <div id="cart-items">
+  
+  </div>      
+  <div class="row position-absolute bottom-0 shadow-lg py-2 px-2 w-100 bg-white" style="margin-left: -16px; height: 60px;">
+  <div class="row mb-3">
+    <div class="col-6">Total Price: ₹<span id="total-price">0</span></div>
+    <div class="col-3"></div>
+    <div class="col-3"><button type="button" class="btn btn-outline-danger btn-sm px-3">Buy</button></div>
+  </div>
+  </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white border-1 border-bottom m-0 fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-none d-lg-block" href="#"><img src="asset/img/freshmart.png" alt="freshmart"
+            width="200" height="60"></a>
+
+        <div class=" navbar-collapse d-flex" id="navbarSupportedContent">
+          <button type="button" style="color: green;" class="btn px-5 py-2 d-none d-lg-block" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            <p class="location m-0">Gwalior</p> <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+          </button>
+          <form class="d-flex w-75" role="search">
+            <div class="input-group input-group-lg shadow-sm rounded-3">
+              <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fa fa-search"
+                  aria-hidden="true"></i></span>
+              <input type="text" placeholder="Search" id="searchbar" class="form-control  shadow-none"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            </div>
+
+          </form>
+          <ul class="navbar-nav  mb-2 mb-lg-0 mx-auto d-flex align-items-center flex-row">
+            <li class="nav-item ps-3 ps-2 mt-1">
+              <a href="" class="text-success">
+                <h6>Login</h6>
+              </a>
+            </li>
+            <li class="nav-item pe-1 ps-2">
+              <button type="button" class="btn btn-outline-success position-relative" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Cart <i class="fa fa-shopping-cart"
+                  aria-hidden="true"></i> <span id="item-count"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                  0
+                  <span class="visually-hidden">unread messages</span>
+                </span></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main style="margin-top: 100px;">
+    <section id="banner" style=" height: 300px;" class="mt-3">
+      <div class="container owl-carousel owl-theme owl-banner">
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+        <div class="card text-bg-dark w-100 shadow  item">
+          <img src="asset/img/vegetables.jpg" class="card-img opacity-75" alt="...">
+          <div class="card-img-overlay">
+            <h3 class="card-title fw-bolder text-center mt-5 ">Vegetables</h3>
+            <p class="card-text text-center">10% discount</p>
+            <button type="button" class="btn btn-outline-light w-100" style="margin-top: 50px;">Order now</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <div id="search-con" class="d-flex flex-wrap container justify-content-evenly">
+
+    </div>
+   <div id="maincon" class="container-fluid ">
+    <section id="latest-item-list" class="container mt-3">
+      <div class="items-row mt-3 position-relative">
+        <h2>Latest</h2>
+        <div class="owl-carousel owl-theme owl">
+
+
+        </div>
+
+      </div>
+    </section>
+    <section id="fruits-item-list" class="container mt-3">
+      <div class="items-row mt-3 position-relative">
+        <h2>Fruits</h2>
+        <div class="owl-carousel owl-theme owl">
+
+
+        </div>
+
+      </div>
+    </section>
+    <section id="dairy-item-list" class="container mt-3">
+      <div class="items-row mt-3 position-relative">
+        <h2>Dairy Products</h2>
+        <div class="owl-carousel owl-theme owl">
+
+
+        </div>
+
+      </div>
+    </section>
+    <section id="vegetables-item-list" class="container mt-3">
+      <div class="items-row mt-3 position-relative">
+        <h2>Vegetables</h2>
+        <div class="owl-carousel owl-theme owl">
+
+
+        </div>
+
+      </div>
+    </section>
+  </div> 
+
+  </main>
+  <div class="mt-5">
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-dark" style="background-color: #ECEFF1">
+      <!-- Section: Social media -->
+      <section class="d-flex justify-content-between p-4 text-white" style="background-color: #21D192">
+        <!-- Left -->
+        <div class="me-5">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a href="" class="text-white me-4 text-decoration-none">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="" class="text-white me-4 text-decoration-none">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="" class="text-white me-4 text-decoration-none">
+            <i class="fa fa-google" aria-hidden="true"></i>
+          </a>
+          <a href="" class="text-white me-4 text-decoration-none">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="" class="text-white me-4 text-decoration-none">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="" class="text-white me-4 text-decoration-none">
+            <i class="fa fa-github" aria-hidden="true"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold">Fresh Mart</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                Convenience meets quality at Fresh Mart, where freshness is always in season. Shop online or visit us
+                in-store today and experience the difference at Fresh Mart!
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Products</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href="#!" class="text-dark">Vegetables</a>
+              </p>
+              <p>
+                <a href="#!" class="text-dark">Milk products</a>
+              </p>
+              <p>
+                <a href="#!" class="text-dark">Fruits</a>
+              </p>
+              <p>
+                <a href="#!" class="text-dark">Began</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Useful links</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href="#!" class="text-dark">Your Account</a>
+              </p>
+              <p>
+                <a href="#!" class="text-dark">Become an Affiliate</a>
+              </p>
+              <p>
+                <a href="#!" class="text-dark">Shipping Rates</a>
+              </p>
+              <p>
+                <a href="#!" class="text-dark">Help</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Contact</h6>
+              <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p><i class="fa fa-home" aria-hidden="true"></i> MP, 474012, India</p>
+              <p><i class="fa fa-envelope-o" aria-hidden="true"></i></i> info@example.com</p>
+              <p><i class="fa fa-phone" aria-hidden="true"></i> +91 8225095582</p>
+              <p><i class="fa fa-print" aria-hidden="true"></i> + 01 234 567 89</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2024 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Freshmart.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </div>
+  <!-- End of .container -->
+
+  
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+  <script src="asset/js/data.js"></script>
+  <script src="asset/js/index.js"></script>
+  <script src="asset/js/location.js"></script>
+  <script src="asset/javascript/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    var owl = $('.owl');
+    var owl_banner = $('.owl-banner');
+    owl.owlCarousel({
+      slideBy: 3,
+      margin: 10,
+      dots: false,
+      nav: true,
+      loop: false,
+      navRewind: false,
+
+
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 5
+        },
+
+        1200: {
+          items: 6
+        },
+        1400: {
+          items: 7
+        }
+      }
+    });
+    owl_banner.owlCarousel({
+      slideBy: 3,
+      margin: 10,
+      dots: false,
+      autoplay: true,
+      autoplayTimeout: 1000,
+      loop: false,
+      autoplayHoverPause: true,
+      autoplaySpeed: 4000,
+      navSpeed: 1000,
+
+
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 4
+        }
+      }
+    });
+  </script>
+
+  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'
+    integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL'
+    crossorigin='anonymous'></script>
+</body>
+
+</html>
